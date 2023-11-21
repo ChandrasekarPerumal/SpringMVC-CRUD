@@ -20,15 +20,21 @@ public class EmployeeController {
 		this.employeeService = theEmployeeService;
 	}
 	
+	
+	public String hello() {
+		return "Hello";
+	}
+	
 	@GetMapping("/list")
-	public String listEmployees(Model model) {
-		
-		
+	public String listEmployees(Model theModel) {
+				
 		// Get the employees from DB
 		List<Employee> theEmployees = employeeService.findAll();
 		
+		System.out.println(theEmployees.toString());
+		
 		// add to the spring model
-		model.addAttribute(theEmployees);
+		theModel.addAttribute("employees",theEmployees);
 		
 		return "list-employees";
 	}
